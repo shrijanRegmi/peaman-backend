@@ -3,6 +3,7 @@ import deleteFeed from "./feed/delete_feed";
 import sendFeedToTimeline from "./feed/send_feed_to_timeline";
 import updateNewPostValue from "./feed/update_new_post_value";
 import followNotif from "./notification/follow_notif";
+import sendMsgNotif from "./notification/send_msg_notif";
 import addSearchKey from "./user/add_search_key";
 import sendUser from "./user/send_user";
 
@@ -24,3 +25,6 @@ exports.deleteFeed = deleteFeed;
 
 // add search key to user document when they create account
 exports.addSearchKey = addSearchKey;
+
+// send message notification
+exports.sendMsgNotif = sendMsgNotif;

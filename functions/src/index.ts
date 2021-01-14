@@ -4,6 +4,7 @@ import sendFeedToTimeline from "./feed/send_feed_to_timeline";
 import updateNewPostValue from "./feed/update_new_post_value";
 import commentNotif from "./notification/comment_notif";
 import followNotif from "./notification/follow_notif";
+import notifCounter from "./notification/notif_counter";
 import reactNotif from "./notification/react_notification";
 import sendMsgNotif from "./notification/send_msg_notif";
 import addSearchKey from "./user/add_search_key";
@@ -36,3 +37,6 @@ exports.reactNotif = reactNotif;
 
 // comment post notification
 exports.commentNotif = commentNotif;
+
+// increase notification count
+exports.notifCounter = notifCounter;

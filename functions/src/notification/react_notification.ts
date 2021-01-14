@@ -6,6 +6,7 @@ import {
   sendNotification,
   sendNotifToCol,
   updateNotifCol,
+  updateNotifCounter,
 } from "./notif_helper";
 
 const reactNotif = functions.firestore
@@ -89,6 +90,9 @@ const reactNotif = functions.firestore
               reacted_by: admin.firestore.FieldValue.arrayUnion(userData),
             };
             await updateNotifCol(owner_id, notifData);
+
+            // update notification count
+            await updateNotifCounter(owner_id);
           }
         }
       }

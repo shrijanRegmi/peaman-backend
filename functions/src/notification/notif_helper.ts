@@ -88,10 +88,26 @@ async function updateNotifCol(userId: string, data: any) {
   }
 }
 
+async function updateNotifCounter(userId: string) {
+  const userRef = admin.firestore().doc(`users/${userId}`);
+  try {
+    await userRef.update({
+      notification_count: admin.firestore.FieldValue.increment(1),
+    });
+    console.log(`Success: Increasing notification count of user ${userId}`);
+  } catch (error) {
+    console.log(
+      `Error!!!: Increasing notification count of user ${userId}`,
+      error
+    );
+  }
+}
+
 export {
   prepareNotification,
   getToken,
   sendNotification,
   sendNotifToCol,
   updateNotifCol,
+  updateNotifCounter,
 };

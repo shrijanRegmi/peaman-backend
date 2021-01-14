@@ -1,5 +1,6 @@
 import admin = require("firebase-admin");
 import * as functions from "firebase-functions";
+import { updateNotifCounter } from "./notif_helper";
 
 const followNotif = functions.firestore
   .document("users/{userId}/requests/{requestId}")
@@ -17,12 +18,7 @@ const followNotif = functions.firestore
 
           if (typeof userData !== "undefined") {
             const { name, photoUrl } = userData;
-
-            const notifRef = admin
-              .firestore()
-              .collection("users")
-              .doc(userId)
-              .collection("notifications");
+            const currentDate = Date.now();
 
             const notifData = {
               user_data: {
@@ -31,21 +27,21 @@ const followNotif = functions.firestore
                 photoUrl,
               },
               type: 0,
+              updated_at: currentDate,
             };
 
-            await notifRef.add(notifData);
-            await admin
+            const followRequestRef = admin
               .firestore()
-              .collection("users")
-              .doc(userId)
-              .update({
-                notification_count: admin.firestore.FieldValue.increment(1),
-              });
+              .doc(`users/${userId}/follow_requests/${id}`);
+
+            await followRequestRef.set(notifData);
+            await updateNotifCounter(userId);
+            console.log("Success: Sending follow notification");
           }
         }
       }
     } catch (error) {
-      console.log("Error!!! sending follow notification", error);
+      console.log("Error!!! Sending follow notification", error);
     }
   });
 

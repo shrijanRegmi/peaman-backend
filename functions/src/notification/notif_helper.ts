@@ -60,4 +60,38 @@ async function sendNotification(tokens: string[], notif: any) {
   }
 }
 
-export { prepareNotification, getToken, sendNotification };
+async function sendNotifToCol(userId: string, data: any) {
+  try {
+    const fs = admin.firestore();
+    const userRef = fs.doc(`users/${userId}`);
+    const notifRef = userRef.collection("notifications").doc(data.id);
+
+    await notifRef.set(data);
+
+    console.log(`Success: Sending to notif collection of ${userId}`);
+  } catch (error) {
+    console.log(`Error!!!: Sending to notif collection of ${userId}`, error);
+  }
+}
+
+async function updateNotifCol(userId: string, data: any) {
+  try {
+    const fs = admin.firestore();
+    const userRef = fs.doc(`users/${userId}`);
+    const notifRef = userRef.collection("notifications").doc(data.id);
+
+    await notifRef.update(data);
+
+    console.log(`Success: Updating notif collection of ${userId}`);
+  } catch (error) {
+    console.log(`Error!!!: Updating notif collection of ${userId}`, error);
+  }
+}
+
+export {
+  prepareNotification,
+  getToken,
+  sendNotification,
+  sendNotifToCol,
+  updateNotifCol,
+};

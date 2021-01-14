@@ -2,7 +2,9 @@ import admin = require("firebase-admin");
 import deleteFeed from "./feed/delete_feed";
 import sendFeedToTimeline from "./feed/send_feed_to_timeline";
 import updateNewPostValue from "./feed/update_new_post_value";
+import commentNotif from "./notification/comment_notif";
 import followNotif from "./notification/follow_notif";
+import reactNotif from "./notification/react_notification";
 import sendMsgNotif from "./notification/send_msg_notif";
 import addSearchKey from "./user/add_search_key";
 import sendUser from "./user/send_user";
@@ -28,3 +30,9 @@ exports.addSearchKey = addSearchKey;
 
 // send message notification
 exports.sendMsgNotif = sendMsgNotif;
+
+// react post notification
+exports.reactNotif = reactNotif;
+
+// comment post notification
+exports.commentNotif = commentNotif;

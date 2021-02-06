@@ -1,5 +1,6 @@
 import admin = require("firebase-admin");
 import deleteFeed from "./feed/delete_feed";
+import expireMoment from "./feed/expire_moment";
 import sendFeedToTimeline from "./feed/send_feed_to_timeline";
 import updateNewPostValue from "./feed/update_new_post_value";
 import commentNotif from "./notification/comment_notif";
@@ -40,3 +41,6 @@ exports.commentNotif = commentNotif;
 
 // increase notification count
 exports.notifCounter = notifCounter;
+
+// delete moment after 24 hr of creation
+exports.expireMoment = expireMoment;

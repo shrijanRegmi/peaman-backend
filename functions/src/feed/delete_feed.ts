@@ -9,7 +9,11 @@ const deleteFeed = functions.firestore
       const ref = admin.firestore();
 
       if (typeof postData !== "undefined") {
-        const { id, owner_ref } = postData;
+        const { id, owner_ref, photos } = postData;
+
+        await owner_ref.update({
+          photos: admin.firestore.FieldValue.increment(-photos.length),
+        });
 
         const followersRef: FirebaseFirestore.CollectionReference = owner_ref.collection(
           "followers"

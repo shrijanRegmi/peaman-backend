@@ -4,6 +4,8 @@ import deleteFeed from "./feed/delete_feed";
 import expireMoment from "./feed/expire_moment";
 import sendFeedToTimeline from "./feed/send_feed_to_timeline";
 import updateNewPostValue from "./feed/update_new_post_value";
+import deleteMoment from "./moment/delete_moment";
+import sendMomentsToTimeline from "./moment/send_moments_to_timeline";
 import commentNotif from "./notification/comment_notif";
 import followNotif from "./notification/follow_notif";
 import notifCounter from "./notification/notif_counter";
@@ -48,3 +50,9 @@ exports.expireMoment = expireMoment;
 
 // if the initial reactor has unreacted a post, assign the value of next reactor to initial reactor of a post
 exports.assignInitReactor = assignInitReactor;
+
+// send newly created moment to followers timeline
+exports.sendMomentsToTimeline = sendMomentsToTimeline;
+
+// trigger this when moment gets expired
+exports.deleteMoment = deleteMoment;

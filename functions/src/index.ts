@@ -1,4 +1,5 @@
 import admin = require("firebase-admin");
+import assignInitReactor from "./feed/assign_init_reactor";
 import deleteFeed from "./feed/delete_feed";
 import expireMoment from "./feed/expire_moment";
 import sendFeedToTimeline from "./feed/send_feed_to_timeline";
@@ -44,3 +45,6 @@ exports.notifCounter = notifCounter;
 
 // delete moment after 24 hr of creation
 exports.expireMoment = expireMoment;
+
+// if the initial reactor has unreacted a post, assign the value of next reactor to initial reactor of a post
+exports.assignInitReactor = assignInitReactor;
